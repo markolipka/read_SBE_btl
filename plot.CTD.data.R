@@ -27,6 +27,7 @@ plot.CTD.data <- function(CTD.data){
         
         ggplot(melted.df,
                aes(x = depth, y = value)) +
+            geom_vline(xintercept = 0) +
             geom_case +
             scale_x_reverse() +
             coord_flip() +

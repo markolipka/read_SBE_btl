@@ -115,7 +115,7 @@ read_btl_DK <- function(filename,
     #data$filename <- filename  
     
     return(list("data" = data,
-                "meta" = list("filename" = filename,
+                "meta" = list(#"filename" = filename,
                               "cruise" = cruise,
                               "station" = station,
                               "bottom" = bottom.m,

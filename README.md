@@ -24,7 +24,7 @@ Arguments
 Format requirements
 -------------------
 
-Currently the identifiers must have a format of ".\*= (.\*)" where "(.\*)" contains the value. <!-- ??? What do you mean ??? -->
+Currently the identifiers must have a format of ".\*= (.\*)" where "(.\*)" contains the value. <!-- ??? What does that mean, David ??? Explain! -->
 
 Examples
 --------

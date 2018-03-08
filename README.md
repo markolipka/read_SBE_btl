@@ -1,12 +1,12 @@
 Read SBE bottle file
 ================
-David Kaiser
+David Kaiser, Marko Lipka
 2018/01/19
 
 Description
 -----------
 
-This function **reads bottle files** produced during Seabird Electronics CTD casts. It was written for data recorded during various cruises by the [IOW](https://www.io-warnemuende.de) and some adjustments might be necessary before application to data recorded elsewhere. However, the function offers optional input of identifiers for **geographic position**, **cruise** name, **station** name, and the station's **bottom depth**. The idea is that the user knows any character string that identifies these meta variables in the header of the .btl file and the function finds the corresponding position in the file using grep() and extracts the values using sub().
+This function **reads bottle files** produced during Seabird Electronics CTD casts. It was written for data recorded during various cruises by the [IOW](https://www.io-warnemuende.de) and some adjustments might be necessary before application to data recorded elsewhere. However, the function offers optional input of identifiers for **geographic position**, **cruise** name, **station** name, and the station's **bottom depth**. The idea is that the user knows any character string that identifies these meta variables in the header of the .btl file and the function finds the corresponding position in the file using *grep()* and extracts the values using *sub()*.
 
 Arguments
 ---------
@@ -24,7 +24,7 @@ Arguments
 Format requirements
 -------------------
 
-Currently the identifiers must have a format of ".\*= (.\*)" where "(.\*)" contains the value. <!-- ??? What do you mean ??? -->
+Currently the identifiers must have a format of ".\*= (.\*)" where "(.\*)" contains the value. <!-- ??? What does that mean, David ??? Explain! -->
 
 Examples
 --------
@@ -317,10 +317,10 @@ pander(Ex1$data, emphasize.strong.rows = which(Ex1$data$statistic == "(avg)"))
 pander(Ex1$meta)
 ```
 
--   **filename**: example\_data/EMB.btl
+-   **filename**: EMB
 -   **cruise**: EMB-91
 -   **station**: 0001
--   **bottom**: 56.34
+-   **bottom**: 56.34 m
 -   **position**: \*\* GPS\_Posn = 55 43.6488N 17 43.7241E
 -   **longitude decdeg**: *17.73*
 -   **longitude decdir**: E
@@ -751,10 +751,10 @@ pander(subset(Ex2$data, statistic == "(avg)"))
 pander(Ex2$meta)
 ```
 
--   **filename**: example\_data/POS.btl
+-   **filename**: POS
 -   **cruise**: POS-470
 -   **station**: 0001
--   **bottom**: 4027.41 m
+-   **bottom**: 4027.41 m m
 -   **position**: \*\* GPS\_Posn = 36 40.2677N 16 14.0217W
 -   **longitude decdeg**: *16.23*
 -   **longitude decdir**: W

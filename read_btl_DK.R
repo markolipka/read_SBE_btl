@@ -88,13 +88,13 @@ read_btl_DK <- function(filename,
     latdeg <- as.numeric(sub(pos.regex, 
                              "\\1", # defines which of the "packages" that have been defined in the brackets is used as substitute
                              position))
-    latmin <- as.numeric(sub(pos.regex, "\\2", position))
-    latdec <- latdeg+latmin/60
-    latdir <- sub(pos.regex, "\\3", position)
+    latmin <-  as.numeric(sub(pos.regex, "\\2", position))
+    latdec <-  as.numeric(latdeg + latmin/60)
+    latdir <-  as.character(sub(pos.regex, "\\3", position))
     longdeg <- as.numeric(sub(pos.regex, "\\4", position))
     longmin <- as.numeric(sub(pos.regex, "\\5", position))
-    longdec <- longdeg+longmin/60
-    longdir <- sub(pos.regex, "\\6", position)
+    longdec <- as.numeric(longdeg + longmin/60)
+    longdir <- as.character(sub(pos.regex, "\\6", position))
     
     #data$longitude <- longdec
     #names(data)[names(data)=="longitude"] <- paste("longitude.deg", longdir, sep = "")
@@ -105,23 +105,23 @@ read_btl_DK <- function(filename,
     cruise <- bottle[grep(cruise.identifier, bottle)] # get text line containing cruise identifier
     cruise <- sub(".*= (.*)$", "\\1", cruise) # extract cruise name
     station <- bottle[grep(station.identifier, bottle)] # get text line containing station identifier
-    station <- sub(".*= (.*)$", "\\1", station) 
+    station <- sub(".*=(.*)$", "\\1", station) 
     
     # station depth (from echo sounding)
-    bottom <- bottle[grep(bottom.identifier, bottle)] # get text line containing cruise identifier
-    bottom.m <- sub(".*= (.*) m$", "\\1", bottom) # extract cruise name
+    bottom <- bottle[grep(bottom.identifier, bottle)] # get text line containing bottom identifier
+    bottom <- sub(".*=(.*)$", "\\1", bottom) # extract bottom depth
     
     # filename
-    #data$filename <- filename  
+    filename <- sub(".*/(.*)\\.btl$", "\\1", filename)
     
     return(list("data" = data,
-                "meta" = list(#"filename" = filename,
-                              "cruise" = cruise,
-                              "station" = station,
-                              "bottom" = bottom.m,
-                              "position" = position,
-                              "longitude decdeg" = longdec,
-                              "longitude decdir" = longdir,
-                              "latitude decdeg" = latdec,
-                              "latitude decdir" = latdir)))
+                "meta" = list("filename" = filename,
+                              "cruise" = as.character(cruise),
+                              "station" = as.character(station),
+                              "bottom" = as.character(bottom),
+                              "position" = as.character(position),
+                              "longitude decdeg" = as.numeric(longdec),
+                              "longitude decdir" = as.character(longdir),
+                              "latitude decdeg" = as.numeric(latdec),
+                              "latitude decdir" = as.character(latdir))))
 }
